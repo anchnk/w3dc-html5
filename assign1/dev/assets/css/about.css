@@ -1,0 +1,172 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
+figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+body {
+  line-height: 1; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+nav ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none; }
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold; }
+
+del {
+  text-decoration: line-through; }
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0; }
+
+input, select {
+  vertical-align: middle; }
+
+/*-------------------------
+		VARIABLES
+-------------------------*/
+/*$font_color:#535e67;*/
+/*-------------------------
+			MIXIN
+-------------------------*/
+/*-------------------------
+	MAIN CONTENT BLOCK
+-------------------------*/
+.center {
+  margin: 0 auto; }
+
+#wrapper {
+  /*width: ((900/$grid_size_px)*100)*$percent;*/
+  /* Have to see for bottom and top*/
+  background-image: url("./../img/grid12_69x12.png");
+  background-repeat: no-repeat;
+  margin: 24px auto 2px; }
+
+/*-------------------------
+		HEADER	
+-------------------------*/
+body {
+  color: black;
+  max-width: 960px;
+  width: 90%; }
+  body a {
+    text-decoration: none;
+    color: black; }
+    body a:hover {
+      color: #32ccfe; }
+
+#wrapper > header {
+  border-bottom: 2px solid black;
+  padding: 22px;
+  margin-bottom: 2px; }
+
+#mainHeader {
+  color: #000000;
+  font-size: 2em; }
+
+.tagline {
+  padding: 3px 11px 11px 3px;
+  font-size: 0.875em; }
+
+/*-------------------------
+		NAVIGATION BAR	
+-------------------------*/
+nav h1 {
+  margin-left: 22px; }
+nav header {
+  padding: 11px 0;
+  border-bottom: 2px solid black; }
+nav ul {
+  margin-top: 11px;
+  width: 312px;
+  background-color: yellow; }
+nav li {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #000000;
+  padding: 14px 22px;
+  font-size: 14px;
+  margin: 0px; }
+nav li:last-child {
+  padding-right: 12px; }
+nav a {
+  text-decoration: none;
+  color: white; }
+  nav a:hover {
+    color: #32ccfe; }
+
+[itemprop="addressCountry"] {
+  text-transform: uppercase; }
+
+/*-------------------------
+		ARTICLE	
+-------------------------*/
+article {
+  width: 717px;
+  margin: 22px 0; }
+  article figure {
+    float: right; }
+
+#personalDetails {
+  width: 393px; }
+  #personalDetails dt, #personalDetails dd {
+    display: inline; }
+
+/*-------------------------
+		ASIDE	
+-------------------------*/
+aside {
+  float: right;
+  width: 232px; }
+
+/*-------------------------
+		    ASIDE	
+-------------------------*/
+footer {
+  margin-top: 22px;
+  border-top: 2px solid black; }
+
+#copyright {
+  padding: 22px; }

@@ -1,0 +1,195 @@
+<!doctype html>
+<!--[if lte IE 7]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if !IE]> <html lang="en"> <![endif]-->
+<head>
+   <meta charset="utf-8">
+   <title>Olivier Martin</title>
+   <link rel="stylesheet" href="./assets/css/responsive.css">
+   <link rel="stylesheet" href="./assets/css/hover.css">
+   <script type="text/javascript" src="//use.typekit.net/tmq7gsw.js"></script>
+   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+   <!--[if lt IE 9]>
+      <script src="./assets/js/html5shiv.js"></script>
+   <![endif]-->
+</head>
+<body class="center">
+   <div id="wrapper">
+      <header>
+         <h1 id="mainHeader">W3 Dev Campus First Week Assignement</h1>
+         <p class="tagline">
+            About Page Profile augmented with <a href="http://www.w3.org/TR/2011/WD-microdata-20110405/">microdata</a>
+         </p>
+      </header>
+
+      <nav>
+         <header>
+            <h1>Navigation Menu</h1>
+         </header>
+         <ul>
+            <li><a href="#bio">Biography</a></li
+            ><li><a href="#band">Band</a></li
+            ><li><a href="http://www.orange.fr" target="_blank">Work Company</a></li>
+            <!-- to see if i add more -->
+         </ul>
+      </nav>
+
+      <!-- Section article stuff -->
+      <article itemscope itemtype="http://schema.org/Person">
+         <header>
+            <h1>About <span translate="no">Olivier Martin</span></h1>
+         </header>
+
+         <section id="personalDetails">
+               <h2 class="section_heading">Personal details</h2>
+               <br>
+            <dl translate="no">
+               <dt>Firstname:&nbsp;</dt>
+                  <dd itemprop="givenName">Olivier<br></dd>
+               <dt>Lastname:&nbsp;</dt>
+                  <dd itemprop="familyName">Martin<br></dd>
+               <dt>Birthdate:&nbsp;</dt>
+                  <dd itemprop="birthDate">
+                     <time datetime="1981-10-24">24/10/1981<br></time>
+                  </dd>
+               <dt>Country:&nbsp;</dt>
+                  <dd itemprop="nationality" itemscope itemtype="http://schema.org/Country">
+                     <span itemprop="name">France<br></span>
+                  </dd>
+               <dt>Mail:&nbsp;</dt>
+                  <dd itemprop="email">
+                     <a href="mailto:anachronik@gmail.com">anachronik@gmail.com</a><br>
+                  </dd>
+               <dt>Address:&nbsp;</dt>
+                  <dd itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                     <span itemprop="streetAddress">50 rue chantecrit</span><br>
+                     <span itemprop="postalCode">33300</span>, <span itemprop="addressLocality">Bordeaux</span><br>
+                     <span itemprop="addressCountry">France</span>
+                  </dd>
+            </dl>
+            <figure>
+               <img src="./assets/img/me_243.jpg" alt="Olivier Martin's Portrait" width="243" height="243"><br>
+               <figcaption>Me at launderette</figcaption>
+            </figure>
+         </section>
+
+         <section id="short_bio">
+            <h2 id="bio" class="section_heading">Short Biography</h2>
+            <p>
+               I'm <span itemprop="name">Olivier Martin</span>, 31 years old living in Bordeaux, France.
+            </p>
+            <section id="job">
+               <h2>Work and Job</h2>
+               <p>    
+                  I work for <span itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
+                  <strong itemprop="name">Orange</strong></span>, a multinational telecom provider. 
+                  I'm a <span itemprop="jobTitle">Phone Operator in a technical center call.</span>
+               </p>
+               <details>
+                  <summary>More about my job</summary>
+                  <p>
+                     Basically i've to fix customer troubles by phone. 
+                     I'm working at an expertise degree so, most of the time, i'm not dealing with customers directly but rather with colleague that get difficulties to solve problems.<br>
+                     I'm working on all IP based services we offer (like Voip, Tvip and Internet access) as well as mobiles phones. Some examples of my daily work could be :
+                  </p>
+                     <ul>
+                        <li>Assign a schedule so that a technician have to go fix an analog phone line.</li>
+                        <li>Troubleshoot network difficulties on computers, private networks, routeurs and alikes.</li>
+                        <li>Help customers to remove virus, backdoor, trojans, malware and the likes.</li>
+                        <li>Troubleshoot system problem on mobile phone or sending bug reports to moblie phone constructors.</li>
+                        <li>Inform and assist in depth customers to discover new mobile OS features</li>
+                        <li>Troubleshoot communication problems regarding mobiles phones.</li>
+                        <li>Diagnose TV's jiter and reset boxes or change them according to the default</li>
+                     </ul>
+                     <br>
+                  <p>
+                     It might sound interesting and sometimes is but most of the time it's boring so i'm doing programing at the same time :]
+                  </p>
+               </details>
+               <p>
+                  I've studied computer programing at <a href="http://www.iutbayonne.univ-pau.fr/"><span itemprop="affiliation" translate="no">IUT de Bayonne et Du pays Basque</span></a>.
+                  It did not end in a job in pure programing but i've keep playing with tools along the year, especially regarding digital arts.
+               </p>
+               <p>
+                  I've been mainly active in the <a href="http://puredata.info/">Pure Data</a>, <a href="http://vvvv.org/">VVVV</a>, and <a href="http://www.processing.org/">Processing</a> communities. 
+                  In <time datetime="2008">2008</time>, i did a workshop at an event call 
+                  <a href="http://node08.vvvv.org/">
+                     <span itemprop="performerIn" itemscope itemtype="http://schema.org/VisualArtsEvent">
+                  	     <strong itemprop="name">node08</strong>
+              	      </span></a> : this workshop was about realtime communication and behavorial algorithms between generative media.
+              	   In short and less barbaric term how to generate sound and visual using behaviors algorithms like velvet integration, physics, boids links them together
+              	   and create some kind of autonomous piece of generative content.
+               </p>
+            </section>
+            <section id="band" itemprop="performerIn" itemscope itemtype="http://schema.org/MusicGroup">
+               <h2>Music and Band</h2>
+               <p>
+                  Last but not least, i'm member of 
+                  <!-- <span > -->
+                     <a href="https://www.facebook.com/pages/Bagarre-G%C3%A9n%C3%A9rale-Band/203574983054168"><strong itemprop="name">Bagarre Générale</strong></a> 
+                     (free-for-all in english, yeah it's stupid !) a band from Bordeaux. You can listen some tunes <a href="https://soundcloud.com/bagarregenerale">here</a>.
+               </p>
+               <p>
+                     I do play bass and keyboards (oldies analog ones, so if some classroom mates wants to share about moog, arp, siel, korg, etc...).<br>
+               </p>
+               <p itemprop="album" itemscope itemtype="http://schema.org/MusicAlbum">
+                        We released our first <span itemprop="name">untitled EP</span> which is just <span itemprop="numTracks">4</span> 
+                        tracks and out on a friend label <a href="http://www.radarswarm.com/"><strong translate="no">Radar Swarm</strong></a>.
+               </p>
+               <details>
+                  <summary>More about my band</summary>
+                  <p>
+                     Bagarre Générale is like running naked in the forest shooting into the air with an assault rifle and two or three acids dissolving under the tongue.
+                     As if Keelhaul and High On Fire, under a Zeuhl crisis took out the brass as brandishing a machete. 
+                     Or as if lustful ghosts of Mahler and Mussorgsky began to sodomize young math-metal ephebes. 
+                     Bagarre Générale plays epic, massive and unreal music where brass mix with guitars to deliver a terrific sonic magma backed by a relentless rhythm section.
+                  </p>
+               </details>
+            </section>
+         </section>
+      </article>
+      <aside>
+         <header>
+            <h2>Tools &amp; Extensions</h2>
+         </header>
+         <ul>
+            <li>
+               <p>Microdata &amp; Validators</p>
+               <ul>
+                  <li>
+                     <a href="http://validator.w3.org/check?uri=http%3A%2F%2Fbagarregenerale.free.fr%2Fweek1%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline&amp;group=0&amp;user-agent=W3C_Validator%2F1.3+http%3A%2F%2Fvalidator.w3.org%2Fservices" target="_blank">w3c validator</a>
+                  </li>
+                  <li>
+                     <a href="http://www.google.com/webmasters/tools/richsnippets?q=http%3A%2F%2Fbagarregenerale.free.fr%2Fweek1%2F&amp;html=" target="_blank">Goole Structured Data</a>
+                  </li>
+                  <li>
+                     <a href="http://html5.validator.nu/?doc=http%3A%2F%2Fbagarregenerale.free.fr%2Fweek1%2F" target="_blank">html5 nu validator</a>
+                  </li>
+                  <li>
+                     <a href="./assets/img/chrome/chrome_outline.jpg" download="Olivier Martin About Outline.jpg">Download Page Outline</a>
+                  </li>
+                  <li>
+                     <a href="./assets/img/chrome/gg_microdata.jpg" download="Olivier Martin About microdata.jpg" >Download Google Microdata View
+                     </a>
+                  </li>
+               </ul>
+            </li>
+            <li><p>Browser Extensions</p>
+               <ul>
+                  <li><a href="./browsersext.html#chrome">Chrome Extensions</a></li>
+                  <li><a href="./browsersext.html#firefox">Firefox Extensions</a></li>
+                  <li><a href="./browsersext.html#opera">Opera Extensions</a></li>
+               </ul>
+            </li>
+         </ul>  
+      </aside>
+      <footer>
+         <p id="copyright">
+            <small>
+               Copyright &copy;
+               <time datetime="2013-06">2013</time>&nbsp;Martin Olivier
+            </small>
+         </p>
+      </footer>
+   </div>
+</body>
+</html>

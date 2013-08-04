@@ -1,0 +1,23 @@
+header:hover {
+  background: #31cdfe;
+  color: #000000; }
+
+footer:hover {
+  background: #31cdfe;
+  color: #000000; }
+
+article:hover {
+  background: #f0f0f0;
+  color: #000000; }
+
+section > figure:hover, section > dl :hover {
+  background: yellow; }
+section :hover {
+  background: #ccc; }
+
+nav:hover li {
+  background: yellow; }
+
+aside:hover {
+  background: #ccc;
+  color: #000000; }

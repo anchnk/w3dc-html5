@@ -1,0 +1,381 @@
+@import "reset";
+
+
+$column_w: 69px;
+$gutter_w: 12px;
+
+$nb_columns: 12;
+$nb_gutters: $nb_columns - 1;
+
+$hover_color:#32ccfe;
+$base_font_sz: 16px;
+$border: 1px solid #cccccc;
+
+//$layout_left_padding: 21px;
+$layout_left_padding: 40px;
+
+// --------------------------------------------------------------------------
+// 									MIXINS
+// --------------------------------------------------------------------------
+
+@mixin link_style($a_color, $fw) {
+	a {
+		text-decoration: none;
+		color:$a_color;
+		font-weight: $fw;
+		&:hover {
+			color:$hover_color;
+		}
+	}
+}
+
+@mixin box_shadow($border_size) {
+	border: solid $border_size #CCC;
+	-moz-box-shadow: 1px 1px 5px #999;
+	-webkit-box-shadow: 1px 1px 5px #999;
+	box-shadow: 1px 1px 5px #999;
+}
+
+@mixin article_p_style {
+	font-size: px_to_em(16px, $base_font_sz);
+	color: #333333;
+	text-align: justify;
+
+}
+
+@mixin typekit_ff($font, $fallback, $fstyle, $fweigth) {
+	font: {
+		family: $font, $fallback;
+		style: $fstyle;
+		weight: $fweigth;
+	}
+}
+
+// --------------------------------------------------------------------------
+// 									FUNCTIONS
+// --------------------------------------------------------------------------
+
+@function px_to_em($target-px, $context) {
+  @return ($target-px / $context) * 1em;
+}
+
+
+// --------------------------------------------------------------------------
+// 								BODY CONTAINER
+// --------------------------------------------------------------------------
+
+body {
+	width: 95.2%;
+	max-width:900px; // TODO CHeck highter rez just in case
+	@include link_style(#0c0c0c, bold);
+	/*
+	background: {
+		image:url("./../img/grid.png");
+		repeat: no-repeat;
+		position: top center; 
+	}
+	*/
+	
+}
+
+
+// --------------------------------------------------------------------------
+// 							MAIN CONTENT CONTAINER
+// --------------------------------------------------------------------------
+// - target -> 900px
+// - container -> 960px [body]
+//--------------------------------------------------------------------------
+
+$base_width: ($nb_columns * $column_w) + ($nb_gutters * $gutter_w);
+$wrapper_width_px: 960px;
+
+#wrapper {
+	@include box_shadow(1px);
+	margin: percentage(24px /$base_width) auto; 
+	width: percentage($wrapper_width_px / $base_width);
+	& > header{
+		padding:
+			percentage(21px / $wrapper_width_px)
+			percentage($layout_left_padding / $wrapper_width_px);
+		border-bottom: 2px solid #000000;
+		margin-bottom: percentage(2px / $wrapper_width_px);
+	}
+}
+
+#mainHeader {
+	font-size: px_to_em(42px, $base_font_sz);
+	text-transform: uppercase;
+}
+
+.tagline {
+	font-size: px_to_em(14px, $base_font_sz);
+	letter-spacing:2px;
+	margin: 0;
+	padding: 
+		percentage(2px / $wrapper_width_px) 
+		percentage(11px / $wrapper_width_px)
+		percentage(11px / $wrapper_width_px)
+		percentage(2px / $wrapper_width_px);
+
+}
+
+// --------------------------------------------------------------------------
+// 									NAVIGATION
+// --------------------------------------------------------------------------
+
+$nav_menu_width: (4 * $column_w) + (3 * $gutter_w); // ~314px at 960
+
+nav {
+	header {
+		border-bottom: 2px solid #000000;
+		padding:
+			percentage(8px / $wrapper_width_px) 
+			0 
+			percentage(8px / $wrapper_width_px)
+			percentage($layout_left_padding / $wrapper_width_px);
+	}
+	ul {
+		margin-top: percentage(12px / $wrapper_width_px);
+		display: inline;
+	}
+	li {
+		&:first-child {
+			margin-left: percentage(40px / $wrapper_width_px);
+		}
+
+		//display: -moz-inline-stack;
+		//display: inline-block;
+		float:left;
+		background-color: #000000;
+		padding: 
+			percentage(12px / $wrapper_width_px)
+			percentage(24px / $wrapper_width_px); // DEBUG was 22px
+		font-size: px_to_em(14px, $base_font_sz);
+	}
+	@include link_style(#ffffff, normal);
+
+}
+
+/* IE CSS hasLayout tricks to handle inline-block */
+.ie6 li{
+    zoom:1;
+    display:inline;
+    padding-right:12px;
+}
+
+// --------------------------------------------------------------------------
+// 									ARTICLE
+// --------------------------------------------------------------------------
+// - target -> 648px
+// - context -> 900px [#wrapper]
+//--------------------------------------------------------------------------
+
+$article_width_px: ((6 * $gutter_w) + (8 * $column_w) - 5px);
+
+article {
+	//border: 1px solid brown; // DEBUG
+	width: percentage($article_width_px/$wrapper_width_px);
+	position:relative;
+	float: left;
+	left: percentage($layout_left_padding / $wrapper_width_px);
+	margin: percentage(24px / $wrapper_width_px) 0;
+	border-top: $border;
+	header {
+		color: #cccccc;
+		border-bottom: $border;
+		font-size: px_to_em(28px, $base_font_sz);
+		text-align: center;
+		text-transform:uppercase;
+ 		margin: 
+			percentage(11px / $article_width_px)
+			0
+			0
+			0;
+		padding-bottom: percentage(11px / $article_width_px);
+		// TODO
+		h1,span{
+			@include typekit_ff(futura-pt, "helvetica, sans-serif", normal, 300)
+		}
+	}
+}
+
+section {
+	margin: percentage(8px / $article_width_px) 0;
+	h2 {
+		@include typekit_ff(futura-pt, "helvetica, sans-serif", normal, 500);
+		font-size: px_to_em(22px, $base_font_sz);
+	}
+}
+
+$dl_width: (7 * $gutter_w + 2px) + (3 * $column_w);
+
+#personalDetails {
+	dl {
+		float:right;
+		width: percentage($dl_width / $article_width_px);
+		border:$border; 
+		@include box_shadow(1px);
+		@include typekit_ff(atrament-web, sans-serif, normal, 500);
+		font-size: px_to_em(14px, $base_font_sz);
+		dt, dd {
+			padding:
+				percentage(8px / $dl_width)
+				0
+				percentage(8px / $dl_width)
+				percentage(8px / $dl_width);
+		}
+		dt {background-color: #efefef;}
+}
+
+	$img_width: 243px;
+
+	figure {
+		float: left;
+		padding: percentage(13px / $article_width_px); 
+		@include box_shadow(1px);
+		figcaption {
+			padding: percentage(13px / $img_width) 0;
+			font-size: px_to_em(18px, $base_font_sz);
+			text-align: center;
+			font-family: cursive;
+		}
+	}
+}
+
+#short_bio {
+	position:relative;
+	top:22px; // TODO check relative
+	clear:both;
+}
+
+// --------------------------------------------------------------------------
+// 									ASIDE
+// --------------------------------------------------------------------------
+// - target -> 162px
+// - context -> 900px [#wrapper]
+//---------------------------------------------------------------------------
+
+$aside_width_px: (3* $gutter_w - 2px) + (3 * $column_w) ;
+
+aside {
+	width: percentage($aside_width_px/$wrapper_width_px);
+    float:right;
+    margin: 
+    	percentage(24px / $wrapper_width_px) 
+		percentage(($layout_left_padding + 2px) / $wrapper_width_px)
+    	0
+    	0;
+    border-top: $border;
+    header {
+		color: #cccccc;
+		border-bottom: $border;
+		font-size: px_to_em(19px, $base_font_sz);
+		text-align: center;
+		text-transform:uppercase;
+		margin: 
+			percentage(20px / $aside_width_px) 
+			auto 
+			0;
+		padding-bottom: 10px;
+		h2{
+			@include typekit_ff(futura-pt, "helvetica, sans-serif", normal, 300)
+		}
+	}
+	& > ul {
+		margin-top: 28px;
+	}
+	ul {
+		//margin-top: percentage(32px / $wrapper_width_px);
+		ul li {
+			background-color: #efefef;
+			margin: 14px 0;
+			padding:
+				percentage(8px / $aside_width_px)
+				0
+				percentage(8px / $aside_width_px)
+				percentage(8px / $aside_width_px);
+			text-align: right;
+		}
+		& > li > p {
+			letter-spacing: 2px;
+		}
+	}
+}
+
+// --------------------------------------------------------------------------
+// 									FOOTER
+// --------------------------------------------------------------------------
+
+footer {
+    clear:both;
+    //margin-top: percentage(22px / $wrapper_width_px);
+	border-top: 2px solid black;
+	padding:
+		percentage(21px / $wrapper_width_px)
+		percentage($layout_left_padding / $wrapper_width_px);
+}
+
+// --------------------------------------------------------------------------
+// 						UTILITIES & GENERIC ELEMENTS
+// --------------------------------------------------------------------------
+
+.center {
+	margin: 0 auto;
+}
+
+.section_heading {
+	//background-color:#efefef;
+	border-bottom: 1px solid #ccc;
+	font-size: px_to_em(22px, $base_font_sz);
+	font-family: "atrament-web", helvetica, arial, sans-serif;
+	font-style: normal;
+	font-weight: 300;
+	letter-spacing: 2px;
+	padding:
+		percentage(12px / $article_width_px)
+		//percentage($layout_left_padding / $article_width_px)
+		0
+		0
+		0;
+		//percentage($layout_left_padding / $article_width_px);
+}
+
+details {
+	margin-left: percentage($layout_left_padding / $article_width_px);
+	margin-bottom: percentage(8px /$article_width_px) ;
+	padding: 2px 0;
+	border-bottom:1px dotted #0c0c0c;
+	border-top:1px dotted #0c0c0c;
+	& > ul {
+		@include article_p_style;
+		margin-left: percentage($layout_left_padding*2 / $article_width_px);
+		li {
+			padding: 8px 0;
+		}
+	}
+}
+
+
+article 
+{
+	p, p>li {
+	@include article_p_style;
+	margin: 11px 0; // TODO RELATIVE
+	padding: 
+		0
+		0
+		0 
+		percentage($layout_left_padding / $article_width_px);
+	}
+}
+
+
+
+[itemprop="addressCountry"] {
+	text-transform: uppercase;
+}
+
+img {
+	max-width: 100%;
+}
+
