@@ -4,13 +4,33 @@
     <meta charset="utf-8">
     <title>HTML5 Canvas Snake Game</title>
     <script data-main="scripts/snakeGame" src="scripts/libs/require.js"></script>
+    <link rel="stylesheet" href="css/snake.css">
   </head>
   <body>
-    Game Template using data structure like linked list, point class and requirejs to modularize javascript code.
-    <p>
-    <canvas id="snake" width="800" height="400">
-    Canvas element not supported by your browser, please upgrade or use another up-to-date browser to enjoy the experiment.
-    </canvas>
-    </p>
+    <header>
+      <h1>HTML5 Course Assignment 2 Subject 2 : HTML5 Canvas Game</h1>
+    </header>
+    <article>
+      <p>
+        <canvas id="snake" width="640" height="480">
+        Canvas element not supported by your browser, please upgrade or use another up-to-date browser to enjoy the experiment.
+        </canvas>
+      </p>
+      <p>
+        This project aims to recreate a classic retro game that reached a broad audience thanks to Nokia. It came ship onboard with old nokia phones and many of them lost some time on this game. This game is known as the <a href="http://en.wikipedia.org/wiki/Snake_(video_game)">Snake Game</a>, basically a moving snake eats fruits and grow each time it get feed. If the snake bites is tail or collide against a wall it died and the game start again.  
+      </p>
+      <p>
+        The code provided isn't optimized at all and shouldn't be consider as an example of a html5 game sample. Moreover, I wanted to recreate data structures that I've used before with Java. More as a challenge for my brain rather than providing a gain of performance. Classes I've recreated are linked list and point class from java. I've just implemented methods I needed for this game and again this is not a smart initiative. I must credit <a href="http://www.nczonline.net/blog/2009/04/13/computer-science-in-javascript-linked-list/">this article</a> that I've used as a starting base. 
+      </p>
+      <p>
+        I've used samples from the course as well, as the shim for requestAnimationFrame as well as the code for handling keyboard events. 
+      </p>
+      <p>
+        The game is pretty simple and many things can be enhanced, it's just a basic working example for the HTML5 assignment.
+      </p>
+      <p> 
+        As an additional challenge, I've used <a href="http://requirejs.org/">requirejs</a> to modularize the javascript code. It's a nice way of thinking and helps clear things as well as the global namespace. I'm still learning it and that's the first project I've done using it.
+      </p>
+    </article>
   </body>
 </html>

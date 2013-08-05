@@ -184,13 +184,12 @@ require([
         var text = "SCORE: " + score;
         ctx.fillText(text, width - ctx.measureText(text).width - 10, 15);
     }
+
     function draw() {
 
         var i;
-
         now = performance.now();
         delta = now - then;
-
 
         if (totalTimeSinceLastRedraw > delayInMs) {
 
