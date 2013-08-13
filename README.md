@@ -1,7 +1,7 @@
 w3dc-html5
 ==========
 
-W3 Dev Campus HTML5 June session Assignments
+W3 Dev Campus HTML5 Web Design Fundamentals June Assignments
 
 This repository aims to centralize works regarding assignments from the HTML5's june session course.
 See there : http://classroom.w3devcampus.com/ for more informations.
