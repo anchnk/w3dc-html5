@@ -1,0 +1,138 @@
+*:focus {
+    outline: none;
+}
+
+body {
+    font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+    width: 86%;
+    max-width: 800px;
+}
+
+body header > h1 {
+    font-size: 2.1em;
+}
+
+.tagline {
+    color: #bcbcbc;
+    font-family: "helvetica", "arial", "sans-serif";
+    font-weight: lighter;
+    font-size: 1.1em;
+    padding-left: 5px;
+}
+
+#register_form {
+    clear:both;
+}
+
+fieldset {
+    border-radius: 5px / 10px;
+    border: 1px solid #ccc;
+    margin: 24px;
+}
+
+fieldset > legend {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-family: "Lucida Grande";
+    letter-spacing: 2px;
+}
+
+input {
+    margin: 0 0 8px;
+}
+
+.hint {
+    font-size: 11px;
+}
+
+#register_form input:not([type=submit]):hover  {  
+    background-color:#ffff66;  
+    border-color: #bbb;
+} 
+
+#register_form label {
+    width: 200px;
+    margin-top: 3px;
+    display: inline-block;
+    float: left;
+    padding: 3px;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 1.1em;
+}
+
+#register_form ul {
+    padding: 0px;
+    /*width: 90%;*/
+    list-style-type: none;
+    list-style-position: outside;
+} 
+
+#register_form li:last-child {
+    border-bottom: 0px;
+    position: relative;
+}
+
+#register_form li {
+    clear:both;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+#register_form input {
+    height: 20px;
+    width: 37%;
+    min-width: 200px;
+    padding: 5px 8px;
+    margin-top: 3px;
+    border:1px solid #aaa;
+    border-radius:2px;
+    background-color: #eee;
+    -moz-transition: .25s;
+    -webkit-transition: .25s;
+    -o-transition: .25s;
+    transition: .25s;
+    letter-spacing: 2px;
+}
+
+#register_form input:focus { 
+    font-weight: bold;
+    transition: 0.3s;
+    border: 2px ;
+    background-color: #ffff66;
+}
+
+#register_form input:valid {
+    box-shadow: 0 0 5px #5cd053;
+    border-color: #28921f;
+}
+
+#register_form span {
+    /*display: block;*/
+
+}
+
+#register_form button {
+    width: 18%;
+    height: 32px;
+    margin-left: 217px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+}
+
+#address:first-child {
+    background-color: red;
+    color: green;
+}
+
+
+.right {
+    float:right;
+    width: 50px;
+    height: 50px;
+}

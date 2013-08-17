@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W3DC HTML5 Web Design Fundamentals Assignment 3</title>
+    <link rel="stylesheet" href="css/assign3.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>W3 Dev Campus HTML5 Assignment 3</h1>
+        <p class="tagline">Forum Registration Form</p>
+      </header>
+
+      <!-- TODO Change method to post before (implementing server side processing) -->
+      <form method="get" id="register_form">
+        <!-- 
+          STEP 1 -> Account information 
+          **********************************
+          username -> type=text
+          mail -> type=email
+          (remail) if necessary have to check validation API
+          password -> type=password /* TODO Check password requirements */
+          repassword -> type=password
+        -->
+
+        <fieldset>
+          <legend>Account Information</legend> 
+          <ul>
+            <li>
+              <!-- Username -->
+              <label for="username">Choose a Username</label>
+              <input type="text" name="username" id="username" placeholder="Username" required pattern=".{3,}"autofocus />
+              <span class="hint">( At least 3 characters )</span>
+            </li>
+            <li>
+              <!-- Mail -->
+              <label for="mail">Enter your e-mail address</label>
+              <input type="email" name="email" id="mail" placeholder="name@mail.com" autocomplete="on" required />  
+            </li>
+            <li>
+              <!-- Password -->
+              <label for="enter_password">Choose a Password</label>
+              <input type="password" name="password" id="enter_password" required />
+              <span class="hint">( 8 alphanumeric characters min )</span>
+            </li>
+            <li>
+              <label for="confirm_password">Confirm Password</label>
+              <input type="password" id="confirm_password"  required />
+            </li>
+          </ul>
+        </fieldset>
+
+        <!-- Personnal informations -->
+        <!-- 
+          STEP 2 -> Personal informations
+          **********************************
+          firstname -> type=text
+          lastname -> type=text
+          phone -> type=tel
+          (date of birth)
+        -->
+        <fieldset>
+          <legend>About You</legend>
+          <ul>
+            <li>
+              <!-- Firstname -->
+              <label for="firstname">First name</label>
+              <input type="text" name="firstname" id="firstname" placeholder="Napoleon" />
+            </li>
+            <li>
+              <!-- Lastname -->
+              <label for="lastname">Last name</label>
+              <input type="text" name="lastname" id="lastname" placeholder="Bonaparte" />
+            </li>
+            <li>
+              <!-- Telephone -->
+              <label for="mobile_phone">Phone number</label>
+              <input type="tel" name="phone" id="mobile_phone" placeholder="06XXXXXXXX" required />
+            </li>
+          </ul>
+        </fieldset>
+
+        <!-- 
+          STEP 3 -> Address
+          **********************************
+          Street address -> type=text
+          Street address line two (opt) -> type=text
+          Zip Code -> type=number
+          City -> type=text
+          Country -> type=text(or list)
+        -->
+
+        <fieldset>
+          <legend>Address</legend>
+          <ul id="address">
+            <li>
+              <!-- Street address -->
+              <label for="street_address1">Street Address</label>
+              <input type="text" name="street" id="street_address1" placeholder="1 rue du Général De Gaulles" required />
+            </li>
+            <li>
+              <label for="street_address2">Street Address (Optional)</label>
+              <input type="text" name="street2" id="street_address2"  />
+            </li>
+            <li>
+              <label for="zipcode">Zip Code</label>
+              <input type="number" min="0" name="zipcode" id="zipcode" placeholder="75000" required />
+            </li>
+            <li>
+              <label for="city">City/Town</label>
+              <input type="text" name="city" id="city" placeholder="Paris" required />
+            </li>
+            <li>
+              <label for="country" min="0">Country</label>
+              <input type="text" name="country" id="country" placeholder="France" required />
+            </li>
+            <li><button type="submit" value="Register">Register</button></li>
+          </ul>
+        </fieldset>
+      </form> 
+    </div>
+    <script src="js/geoloc.js"></script>
+  </body>
+</html>
