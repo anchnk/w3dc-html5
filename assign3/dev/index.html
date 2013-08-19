@@ -31,8 +31,9 @@
             <li>
               <!-- Username -->
               <label for="username">Choose a Username</label>
-              <input type="text" name="username" id="username" placeholder="Username" required pattern=".{3,}"autofocus />
-              <span class="hint">( At least 3 characters )</span>
+              <input type="text" name="username" id="username" placeholder="Username" pattern="^[a-zA-Z][a-zA-Z0-9-_]{1,15}$" autofocus autocomplete="off" required />
+              <br />
+              <span class="hint">Proper format: Start with a letter, at least two characters, no more than 15 characters.</span>
             </li>
             <li>
               <!-- Mail -->
@@ -42,12 +43,13 @@
             <li>
               <!-- Password -->
               <label for="enter_password">Choose a Password</label>
-              <input type="password" name="password" id="enter_password" required />
-              <span class="hint">( 8 alphanumeric characters min )</span>
+              <input type="password" name="password" id="enter_password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required />
+              <br />
+              <span class="hint">Proper format: 8 charaters min, at least one Uppercase, one lowercase and one number</span>
             </li>
             <li>
               <label for="confirm_password">Confirm Password</label>
-              <input type="password" id="confirm_password"  required />
+              <input type="password" id="confirm_password" required />
             </li>
           </ul>
         </fieldset>
@@ -66,18 +68,20 @@
           <ul>
             <li>
               <!-- Firstname -->
-              <label for="firstname">First name</label>
+              <label for="firstname">First name (Optional)</label>
               <input type="text" name="firstname" id="firstname" placeholder="Napoleon" />
             </li>
             <li>
               <!-- Lastname -->
-              <label for="lastname">Last name</label>
+              <label for="lastname">Last name (Optional)</label>
               <input type="text" name="lastname" id="lastname" placeholder="Bonaparte" />
             </li>
             <li>
               <!-- Telephone -->
               <label for="mobile_phone">Phone number</label>
-              <input type="tel" name="phone" id="mobile_phone" placeholder="06XXXXXXXX" required />
+              <input type="tel" name="phone" id="mobile_phone" placeholder="06XXXXXXXX" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" required />
+               <br />
+              <span class="hint">Proper format: french phone (Starts either with 06, 00336 or +336)</span>
             </li>
           </ul>
         </fieldset>
@@ -113,14 +117,15 @@
               <input type="text" name="city" id="city" placeholder="Paris" required />
             </li>
             <li>
-              <label for="country" min="0">Country</label>
+              <label for="country">Country</label>
               <input type="text" name="country" id="country" placeholder="France" required />
             </li>
-            <li><button type="submit" value="Register">Register</button></li>
+            <li><button type="submit" id="submit_form" class="submit" value="Register">Register</button></li>
           </ul>
         </fieldset>
       </form> 
     </div>
-    <script src="js/geoloc.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+    <script src="js/geolocvalidate.js"></script>
   </body>
 </html>
