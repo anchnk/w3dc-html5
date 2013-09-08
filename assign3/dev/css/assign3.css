@@ -45,7 +45,6 @@ fieldset > legend {
 }
 
 input {
-    font-size: 1.1em;
     margin: 0 0 8px;
 }
 
@@ -54,9 +53,9 @@ input {
 
 }
 
-.hint:hover {
+/*.hint:hover {
     display: visible;
-}
+}*/
 
 #register_form label {
     display: inline-block;
@@ -110,7 +109,6 @@ input {
     width: 37%;
 }
 
-
 #register_form input:focus { 
     background-color: #ffff66;
     border: 2px solid black !important;
@@ -126,12 +124,14 @@ input {
     -webkit-transition: .75s;
 }
 
-
-#confirm_password:valid {
+/*#confirm_password:valid {
      background-color:yellow;
+}*/
+
+
+#register_form input[required] {
+     border: 1px solid #eee;
 }
-
-
 /* TODO check Required and optional */
 
 button.submit {
@@ -161,9 +161,10 @@ button.submit {
     }
 
     button.submit {
-        width: 100%;
-        margin: 0 auto;
-        padding: auto 0;
+        margin-left: 0px;
+        width: 216px;
+        /*margin: 0 auto;*/
+        padding: 5px 8px;
     }
 }
 
