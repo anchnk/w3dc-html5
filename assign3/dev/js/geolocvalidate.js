@@ -10,8 +10,6 @@
     // Script Global Variables
     var geo_button = document.createElement('button'),
         address,
-        input_elms,
-        hints,
         addBtnFunction,
         getPosFunction,
         geoDecPosFunction,
@@ -126,75 +124,75 @@
     // END GEOLOCALISATION PART---------------------------------------------
 
     // START VALIDATION PART------------------------------------------------
-    function formvalidation() {
-        var i;
+    function getPassword() {
+        return document.getElementById('enter_password').value;
+    }
 
-        input_elms = document.getElementsByTagName('input');
+    function checkElemValidity() {
 
-        // function check inputs validity as well as passwords matches
-        function checkValidity(elm) {
+        // Only apply styles if something has been tipped
+        if (this.value.length > 0) {
 
-            var inv_elm,
-                passwd_elm;
+            // Special case to check password confirmation 
+            if (this.id === 'confirm_password') {
 
-            // get invalid pseudo selector input elements
-            inv_elm = document.querySelector(':invalid');
+                // if passwords length does not match
+                if (this.value.length !== getPassword().length) {
+                    this.setCustomValidity('Passwords length does not match');
+                    this.classList.add('invalid');
 
+                // if length matches check if password matches
+                } else {
 
-            // only check invalidity if the user has tipped something
-            if (elm.value.length !== 0) {
-                // if current element is invalid add visual style to it
-                if (inv_elm === elm) {
-                    elm.style.backgroundColor = '#e19d9d !important';
-                    elm.classList.add('invalid');
-                }
+                    // password confirmation do not match password
+                    if (this.value !== getPassword()) {
+                        this.setCustomValidity('Passwords does not match');
+                        this.classList.remove('valid');
 
-                // special case of password matching
-                if (elm.id === 'confirm_password') {
-                    // get previous password element
-                    passwd_elm = document.getElementById('enter_password');
-                    // compare passwords
-                    if (elm.value.length !== passwd_elm.value.length) {
-                        elm.setCustomValidity('length does not match');
-                        elm.classList.add('invalid');
+                    // ok both passwords are equals
+                    // so element is now valid
                     } else {
-                        if (elm.value !== passwd_elm.value) {
-                            elm.setCustomValidity('password do not match');
-                            elm.classList.remove('valid');
-                            elm.classList.add('invalid');
-                            console.log(elm.classList);
-                        } else {
-                            elm.setCustomValidity('');
-                            elm.classList.remove('invalid');
-                            elm.classList.add('valid');
-                            console.log(elm.classList);
-                        }
+                        this.setCustomValidity('');
+                        this.classList.remove('invalid');
                     }
                 }
+
+            // other case just check current input field validity state
+            } else {
+                if (!this.checkValidity()) {
+                    this.classList.add('invalid');
+                } else {
+                    this.classList.remove('invalid');
+                }
             }
-        }
 
-        // add event listener to form input element
-        // so that validity is checked when user leave the input field
-        for (i = 0; i < input_elms.length; i = i + 1) {
-            
-            input_elms[i].addEventListener('blur', function() {
-                checkValidity(this);
-            });
-            
+        // if nothing has been tipped remove validity style
+        } else {
+            this.classList.remove('invalid');
+            this.classList.remove('valid');
         }
-
-        // some more work to do there
-        // function showHint() {
-        //     var i;
-        //     hints = document.getElementsByClassName('hint');
-        //     for (i = 0; i < hints.length; i = i + 1) {
-        //         hints[i].style.display = 'visible';
-        //     }
-        // }
     }
-    // END VALIDATION PART------------------------------------------------
 
-    geolocation();
-    formvalidation();
+    function removeBorder() {
+        this.style.border = 'none';
+    }
+
+    // Just bind checkElemValidity on all inputs elements
+    function formValidation() {
+
+        var inputs = document.querySelectorAll('input'),
+            i;
+
+        for (i = 0; i < inputs.length; i = i + 1) {
+            inputs[i].addEventListener('input', checkElemValidity);
+            inputs[i].addEventListener('blur', removeBorder);
+        }
+
+    }
+
+    // END VALIDATION PART------------------------------------------------
+    document.addEventListener('DOMContentLoaded', function() {
+        geolocation();
+        formValidation();
+    });
 }());
