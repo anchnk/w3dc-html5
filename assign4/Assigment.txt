@@ -1,0 +1,6 @@
+[Done]
+Improve the form you created for assignement 3, so that if we reload the page, we do not loose what has been typed. Look at the last example of the Web Storage API chapter.
+
+Add a mean to drag'n'drop pictures with instant preview, in your form. Look at the different examples from the drag'n'drop part 2 chapter. 
+
+If the form is submitted, also upload the images with a progress monitor (even if we do a fake upload, like in the examples from the drag'n'drop part 2 chapter).

@@ -1,0 +1,9 @@
+Build for production should only be made after :
+
+JS has been linted and performance checked
+HTML has been checked and validated
+CSS has been linted and remove all unesceeray crap
+
+- Gruntjs build
+    * minify html, css (or sass), js
+    * copy minified files into the production folder
