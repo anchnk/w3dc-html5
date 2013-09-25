@@ -6,19 +6,21 @@
 (function () {
   "use strict";
 
-  // Script Global Variables
+  // Global Variables
   var
     geo_button = document.createElement('button'),
     address,
     getPosFunction,
     geoDecPosFunction,
     errHandlFunction,
+    formDataObj = {},
     updateFormFunction;
 
-  /*  Function handler that returns element which fired the event
-   *  Cross-browser and retro-backward compatible.
-   *  Credits: http://www.quirksmode.org/js/events_properties.html
-   */
+  /**************************************************************************
+   *  Function handler that returns which element fired an event            *
+   *  Cross-browser and retro-backward compatible.                          *
+   *  Credits: http://www.quirksmode.org/js/events_properties.html          *
+   **************************************************************************/
   function returnEventElement(e) {
     var elm;
 
@@ -52,16 +54,28 @@
 
     // if sessionStorage is supported
     if (sessionStorage !== 'undefined') {
-      sessionStorage.setItem(id, elm.value);
+      // if something is tipped we store it in session storage
+      if (elm.value.length > 0) {
+        formDataObj[id] = elm.value;
+        sessionStorage.setItem('formData', JSON.stringify(formDataObj));
+      // otherwise we remove the key from session storage
+      } else {
+        delete formDataObj[id];
+        sessionStorage.removeItem('formData');
+        sessionStorage.setItem('formData', JSON.stringify(formDataObj));
+
+        // sessionStorage.removeItem('formData', id);
+      }
     }
 
   }
 
-  /*  Insert geolocalisation button using JS
-   *  If JS is disabled and geolocalisation not enable 
-   *  The button won't work so it's useless to display it.
-   *  So only add the button if JS is enable and geolocation is supported
-   */
+  /**************************************************************************  
+   *  Insert geolocalisation button using JS                                *
+   *  If JS is disabled and geolocalisation not enable                      *
+   *  The button won't work so it's useless to display it.                  *
+   *  So only add the button if JS is enable and geolocation is supported   *
+  **************************************************************************/
   function addGeolocButton() {
 
     var address_ul_elem = document.querySelector('#address'),
@@ -85,11 +99,12 @@
     //address_ul_elem.insertBefore(geo_button, address_ul_first_item);
   }
 
-  /*  Geolocation Part, could be an object as this function 
-   *  bundled several others utility function. Use Google 
-   *  Maps API to geo decode latitude and longitude
-   *  As well as updating the form with matching address
-   */
+  /**************************************************************************  
+   *  Geolocation Part, could be an object as this function                 * 
+   *  bundled several others utility function. Use Google                   *
+   *  Maps API to geo decode latitude and longitude                         *
+   *  As well as updating the form with matching address                    *
+   **************************************************************************/
   function geolocation() {
     if (navigator.geolocation && navigator.onLine) {
 
@@ -141,11 +156,12 @@
           }
         }
 
-        sessionStorage.setItem('street_address1', street_adr1_elm.value);
-        sessionStorage.setItem('street_address2', street_adr2_elm.value);
-        sessionStorage.setItem('zipcode', zipcode_elm.value);
-        sessionStorage.setItem('city', city_elm.value);
-        sessionStorage.setItem('country', country_elm.value);
+        formDataObj.street_address1 = street_adr1_elm.value;
+        formDataObj.street_address2 = street_adr2_elm.value;
+        formDataObj.zipcode = zipcode_elm.value;
+        formDataObj.city = city_elm.value;
+        formDataObj.country = country_elm.value;
+        sessionStorage.setItem('formData', JSON.stringify(formDataObj));
       };
 
       // OK: we got a position to decode using gmaps' geodecoder
@@ -188,21 +204,21 @@
     }
   }
 
-  // START VALIDATION PART------------------------------------------------
-
-  /*  Utility Function. Returns password value.
-   *  Used in checkElemValidity to compare with password confirmation.
-   */
+  /**************************************************************************
+   *  Utility Function. Returns password value.                             *
+   *  Used in checkElemValidity to compare with password confirmation.      *
+   **************************************************************************/
   function getPassword() {
     return document.getElementById('enter_password').value;
   }
 
-  /*  Custom input element validity checking rules
-   *  Client-side validation API with some custom behavior
-   *  Check if passwords length and if passwords matches
-   *  Add custom CSS class to style input elements 
-   *  According to their validity state
-   */
+  /**************************************************************************  
+   *  Custom input element validity checking rules                          *
+   *  Client-side validation API with some custom behavior                  *
+   *  Check if passwords length and if passwords matches                    *
+   *  Add custom CSS class to style input elements                          *
+   *  According to their validity state                                     *
+   **************************************************************************/
   function checkElemValidity(e) {
 
     var elm = returnEventElement(e);
@@ -250,18 +266,20 @@
     }
   }
 
-  /*  Utility function use to remove the CSS border around
-   *  the element passed as a parameter. Used when an event
-   *  is fired so that we are using returnEventElement function
-   */
+  /**************************************************************************
+   *  Utility function use to remove the CSS border around                  *
+   *  the element passed as a parameter. Used when an event                 *
+   *  is fired so that we are using returnEventElement function             *
+   **************************************************************************/
   function removeBorder(e) {
     var elm = returnEventElement(e);
     elm.style.border = 'none';
   }
-  // END VALIDATION PART--------------------------------------------------
 
-  // RUN -----------------------------------------------------------------
-
+  /************************************************************************** 
+   *  Bind event handlers on all input elements                             *
+   *  input and blur event are actually handled on all form input elements  *
+   **************************************************************************/
   function attachEvents() {
     var inputs = document.querySelectorAll('input'),
       i;
@@ -278,48 +296,39 @@
     }
   }
 
+  /**************************************************************************
+   *  Function use to retrieve data from either                             *
+   *  sessionStorage or localStorage.                                       *
+   *  Used to get values back when page is refreshed                        *
+   *  or form values saved when offline                                     *
+   **************************************************************************/
   function retrieveDataFromStorage() {
 
-    var i, n, id, field_value, elm;
+    var id, elm;
 
-    // If localStorage is supported
-    if (localStorage !== 'undefined') {
+    // If HTML5 Storage is supported
+    if (localStorage !== 'undefined' || sessionStorage !== 'undefined') {
 
-      // Loop trough all store key/value pairs
-      for (i = 0; i < localStorage.length; i++) {
+      // If we got something stored in sessionStorage
+      if (sessionStorage.formData) {
+        formDataObj = JSON.parse(sessionStorage.getItem('formData'));
 
-        /*  Each localStorage key match form inputs' id
-         *  So that each localStorage entry match a form 
-         *  input element.
-         */
-        id = localStorage.key(i);
-
-        // try go get form input element matching localStorage id key
-        elm = document.getElementById(id);
-
-        // the element does exist in the form
-        if (elm) {
-
-          // get element value
-          field_value = localStorage.getItem(id);
-
-          // if input has no data we remove the value from the store
-          // no need to restore something empty, on the contrary
-          // we restore the value from sesionStorage
-          if (field_value === '') {
-            localStorage.removeItem(id);
-          } else {
-            elm.value = field_value;
+        // loop on our form JSON object and update matching id's form field
+        for (id in formDataObj) {
+          if (formDataObj.hasOwnProperty(id)) {
+            elm = document.getElementById(id);
+            elm.value = formDataObj[id];
           }
         }
       }
     }
   }
 
-  /*  Function use to remove geolocation button 
-   *  Used here to remove the geo UI if there 
-   *  isn't any active network connection
-   */
+  /**************************************************************************
+   *  Function use to remove geolocation button                             *
+   *  Used here to remove the geo UI if there                               *
+   *  isn't any active network connection                                   *
+   **************************************************************************/
   function removeGeolocButton() {
 
     var
@@ -367,6 +376,7 @@
   window.addEventListener('offline', saveFormData, false);
 
   document.addEventListener('DOMContentLoaded', function () {
+
     geolocation();
     attachEvents();
     retrieveDataFromStorage();
