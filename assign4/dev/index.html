@@ -83,10 +83,16 @@
                <br />
               <span class="hint">Proper format: french phone (Starts either with 06, 00336 or +336)</span>
             </li>
-<!--             <li>
-              <label for="pic">Choose/Drag Picture (Optional)</label>
-              <input type="file">
-            </li> -->
+            <li>
+              <label for="pic">Select Picture (Optional)</label>
+              <input type="file" id="picture_file" accept="image/*" />
+            </li>
+            <li>
+                <span class="label">Or Drag Picture (Optional)</span>
+                <div class="picture_container">
+                  <output class="picture" id="picture_preview"></output>
+                </div>
+            </li>
           </ul>
         </fieldset>
 

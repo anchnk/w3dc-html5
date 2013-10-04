@@ -1,10 +1,7 @@
 w3dc-html5
 ==========
+W3 Dev Campus HTML5 Course : Web Design Fundamentals - June 2013 Session
 
-W3 Dev Campus HTML5 Web Design Fundamentals June Assignments
+This course request doing 4 assignments related to lessons materials. I've set this repository as backup and tracking work-in-progress. Code is comitted 'as is' and shouldn't be considered like code sample or best practice. At the same time, HTML5 is still subject to change and will continue to. So again, warning ! Do not use code from those examples in some production environment.
 
-This repository aims to centralize works regarding assignments from the HTML5's june session course.
-See there : http://classroom.w3devcampus.com/ for more informations.
-The course ask to submit 4 assignements.
-Nothing fancy, just help to track my progress and allows back and forth files revision history.
-So don't expect smart code from here :)
+See: http://classroom.w3devcampus.com/ for further details.
