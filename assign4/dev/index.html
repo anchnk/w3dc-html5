@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html manifest="form.appcache">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>W3DC HTML5 Web Design Fundamentals Assignment 3</title>
+    <title>W3DC HTML5 Web Design Fundamentals Assignment 4</title>
     <link rel="stylesheet" href="css/assign4.css" />
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>W3 Dev Campus HTML5 Assignment 3</h1>
+        <h1>W3 Dev Campus HTML5 Assignment 4</h1>
         <p class="tagline">Forum Registration Form</p>
       </header>
 
@@ -85,12 +85,11 @@
             </li>
             <li>
               <label for="pic">Select Picture (Optional)</label>
-              <input type="file" id="picture_file" accept="image/*" />
+              <input type="file" accept="image/*" id="picture_input" value="Select a Picture" />
             </li>
             <li>
                 <span class="label">Or Drag Picture (Optional)</span>
-                <div class="picture_container">
-                  <output class="picture" id="picture_preview"></output>
+                <div id="picture" class="picture_container">
                 </div>
             </li>
           </ul>

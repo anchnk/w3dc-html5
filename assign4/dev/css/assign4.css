@@ -1,4 +1,4 @@
-@charset 'UTF-8';
+@charset "UTF-8";
 
 :focus {
     outline: none;
@@ -86,13 +86,6 @@ form li:last-child {
     border-bottom: 0;
 }
 
-/*
-form ul>li:first-child {
-    padding-top: 2%;
-}
-form input:not([type="file"]
-*/
-
 form input:not([type="file"]) {
     background-color: #eee;
     border: none;
@@ -114,12 +107,18 @@ form input:not([type="file"]) {
     border-radius: 10px;
     border:4px dashed #eee;
     display: inline-block;
+    height: 200px;
     letter-spacing: 2px;
     margin-left: 24px;
     margin-top: 3px;
     min-width: 200px;
+    padding: 4px;
     width: 37%;
-    height: 200px;
+}
+
+.picture_container > img {
+    width: 100%;
+    height: 100%;
 }
 
 form input[type="file"] {
@@ -167,7 +166,7 @@ form input:invalid {
 }
 
 :required {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAARUlEQVR42mNgIAb8Z2AoAuIfQCyALngViAOgtAEQvwMrAhL+QDwHiP8j4RQg9oHpRpb8DcTmYIl/DAyH0YwNgCqKw+sgAJK8Mzx7UxE7AAAAAElFTkSuQmCC);
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAARUlEQVR42mNgIAb8Z2AoAuIfQCyALngViAOgtAEQvwMrAhL+QDwHiP8j4RQg9oHpRpb8DcTmYIl/DAyH0YwNgCqKw+sgAJK8Mzx7UxE7AAAAAElFTkSuQmCC");
     background-repeat: no-repeat;
     background-position: 98%;
 }
@@ -185,11 +184,9 @@ form input:invalid {
     -webkit-transition: .1s;
 }
 
-
 form input:hover  {  
     background-color:#ffff66;  
 }
-
 
 button {
     background-color: #68b12f;
@@ -198,7 +195,7 @@ button {
     background: -moz-linear-gradient(top, #68b12f, #50911e);
     background: -ms-linear-gradient(top, #68b12f, #50911e);
     background: -o-linear-gradient(top, #68b12f, #50911e);
-    background: linear-gradient(top, #68b12f, #50911e);
+    background: linear-gradient(to bottom, #68b12f, #50911e);
     border: 1px solid #509111;
     border-bottom: 1px solid #5b992b;
     -webkit-border-radius: 3px;
@@ -220,7 +217,7 @@ button {
 }
 
 button.submit {
-    /*margin-left: 228px;*/
+    margin-left: 228px;
     margin: 0 auto;
     display: block;
 }
@@ -243,6 +240,10 @@ button:active {
     margin-left: 15px;
 }
 
+.dragOver {
+    border-color: black !important;
+}
+
 
 /* Little fix for phone rendering not responsive at all */
 @media only screen and (max-width: 583px) {
@@ -254,5 +255,9 @@ button:active {
         margin-left: 0;
         width: 216px;
         padding: 5px 8px;
+    }
+
+    .geobutton {
+        display: block;
     }
 }

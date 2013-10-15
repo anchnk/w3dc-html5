@@ -314,11 +314,82 @@
     elm.style.border = 'none';
   }
 
-  function previewSelectedPicture() {
+ /**************************************************************************
+   *  Render a thumbnail of the selected file passed as an argument         *
+   *  Could be more generic taking a second parameter which would be        *
+   *  the container where the preview will be display. Also add it to       *
+   *  storage so that the picture can be found later.                       *
+   *  Parameter: file -> The file which have ben selected or dragged        *
+   **************************************************************************/
+  function displayPicturePreview(file) {
+
     var
-      picture_elm = document.getElementById('picture_file'),
-      picture = picture_elm.files[0],
-      output_elm = document.getElementById('picture_preview');
+      picture_container = document.getElementById('picture'),
+      filereader = new window.FileReader(),
+      img = null;
+
+    filereader.readAsDataURL(file);
+
+    filereader.onload = function (e) {
+      if (picture_container.hasChildNodes()) {
+        while (picture_container.firstChild) {
+          picture_container.removeChild(picture_container.firstChild);
+        }
+      }
+      img = document.createElement('img');
+      img.src = e.target.result;
+      picture_container.appendChild(img);
+
+      // save picture data url to storage
+      if (file.size <= 1000000) {
+        formDataObj.picture_src = e.target.result;
+        sessionStorage.setItem('formData', JSON.stringify(formDataObj));
+      }
+    };
+  }
+
+  /**************************************************************************
+   *  Handle file selection and call displayPicturePreview when the user    *
+   *  select a picture using the field input type file with id              *
+   *  picture_input.                                                        *
+   **************************************************************************/
+  function handleFileSelect() {
+    var picture = document.getElementById('picture_input').files.item(0);
+    displayPicturePreview(picture);
+  }
+
+  /**************************************************************************
+   **************************************************************************/
+  function dragStartHandler(e) {
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.dropEffect = 'move';
+  }
+
+  /**************************************************************************
+   **************************************************************************/
+  function dragEnterHandler(e) {
+    var elm = returnEventElement(e);
+    elm.classList.add('dragOver');
+  }
+
+  /**************************************************************************
+   **************************************************************************/
+  function dragOverHandler(e) {
+    console.log('drag Over');
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  /**************************************************************************
+   **************************************************************************/
+  function dropHandler(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    returnEventElement(e).classList.remove('dragOver');
+
+    var picture = e.dataTransfer.files[0];
+    displayPicturePreview(picture);
+
   }
 
   /************************************************************************** 
@@ -329,12 +400,15 @@
    *  Attach removeBorder to blur event.                                    *
    **************************************************************************/
   function attachEvents() {
-    var inputs = document.querySelectorAll('input'),
+    var
+      inputs = document.querySelectorAll('input'),
+      picture_container = document.getElementById('picture'),
       i;
 
+    // Input Elements Events Listeners
     for (i = 0; i < inputs.length; i = i + 1) {
       // if input element isn't the file chooser
-      if (inputs[i].id !== 'picture_file') {
+      if (inputs[i].id !== 'picture_input') {
         // Validation Part
         inputs[i].addEventListener('input', checkEventElementValidity);
         inputs[i].addEventListener('blur', removeBorder);
@@ -343,9 +417,15 @@
         inputs[i].addEventListener('input', addElemValueToSessionStorage);
       // the input element is the file chooser 
       } else {
-        inputs[i].addEventListener('change', previewSelectedPicture);
+        inputs[i].addEventListener('change', handleFileSelect);
       }
     }
+
+    // Picture dnd Events Listeners
+    picture_container.addEventListener('dragenter', dragEnterHandler);
+    picture_container.addEventListener('drop', dropHandler);
+    picture_container.addEventListener('dragover', dragOverHandler);
+    picture_container.addEventListener('dragstart', dragStartHandler);
   }
 
   /**************************************************************************
@@ -358,12 +438,20 @@
    *    elm the current element which we want the value to be restore       * 
    **************************************************************************/
   function updateFormElemWithStorage(formDataObj, elm) {
-    var id;
+    var
+      id = null,
+      img = null;
 
     for (id in formDataObj) {
       if (formDataObj.hasOwnProperty(id)) {
         elm = document.getElementById(id);
-        elm.value = formDataObj[id];
+        if (id !== 'picture_src') {
+          elm.value = formDataObj[id];
+        } else {
+          img = document.createElement('img');
+          img.src = formDataObj[id];
+          document.getElementById('picture').appendChild(img);
+        }
       }
     }
   }
