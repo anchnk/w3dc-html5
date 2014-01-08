@@ -8,9 +8,11 @@
 
   // Global Variables
   var
-    geo_button = document.createElement('button'),
+    picture_container = document.getElementById('picture'),
     address_ul_elem = document.querySelector('#address'),
     form = document.getElementById('register_form'),
+    submit_btn = document.getElementById('submit_form'),
+    geo_button = document.createElement('button'),
     address,
     getPosFunction,
     geoDecPosFunction,
@@ -324,7 +326,6 @@
   function displayPicturePreview(file) {
 
     var
-      picture_container = document.getElementById('picture'),
       aboutyou_list = document.querySelector('#aboutyou'),
       progressBar = document.createElement('progress'),
       li = document.createElement('li'),
@@ -437,7 +438,7 @@
   function attachEvents() {
     var
       inputs = document.querySelectorAll('input'),
-      picture_container = document.getElementById('picture'),
+
       i;
 
     // Input Elements Events Listeners
@@ -485,7 +486,7 @@
         } else {
           img = document.createElement('img');
           img.src = formDataObj[id];
-          document.getElementById('picture').appendChild(img);
+          picture_container.appendChild(img);
         }
       }
     }
@@ -535,7 +536,6 @@
    **************************************************************************/
   function saveFormData() {
     var
-      submit_btn = document.getElementById('submit_form'),
       geo_button = document.getElementById('geolocation');
 
     console.log('lost connection');
@@ -557,7 +557,6 @@
    *  behavior allowing to submit form again.                               *
    **************************************************************************/
   function submitForm() {
-    var submit_btn = document.getElementById('submit_form');
 
     if (!document.getElementById('geolocation')) {
       addGeolocButton();
@@ -569,7 +568,7 @@
     submit_btn.removeEventListener('click', saveToLocalStorage);
 
     // form submission
-
+    sessionStorage.clear();
   }
 
 
