@@ -1,0 +1,8 @@
+change
+
+* fix some css errors
+* DONE prevent js error with file picture
+* DONE added file picture upload
+* DONE retrieve selected picture from storage and add it to
+* TODO handle dnb
+* TODO upload form

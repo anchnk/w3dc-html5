@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html manifest="form.appcache">
+<!-- <html manifest="form.appcache"> -->
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +14,7 @@
         <p class="tagline">Forum Registration Form</p>
       </header>
 
-      <!-- TODO Change method to post before (implementing server side processing) -->
-      <form method="get" id="register_form">
+      <form method="post" action="upload.php" id="register_form">
         <!-- 
           STEP 1 -> Account information 
           **********************************
@@ -65,7 +65,7 @@
         -->
         <fieldset>
           <legend>About You</legend>
-          <ul>
+          <ul id="aboutyou">
             <li>
               <!-- Firstname -->
               <label for="firstname">First name (Optional)</label>
@@ -84,8 +84,8 @@
               <span class="hint">Proper format: french phone (Starts either with 06, 00336 or +336)</span>
             </li>
             <li>
-              <label for="pic">Select Picture (Optional)</label>
-              <input type="file" accept="image/*" id="picture_input" value="Select a Picture" />
+              <label for="picture_input">Select Picture (Optional)</label>
+              <input type="file" accept="image/*" id="picture_input" />
             </li>
             <li>
                 <span class="label">Or Drag Picture (Optional)</span>
@@ -133,7 +133,7 @@
         </fieldset>
         <button type="submit" id="submit_form" class="submit" value="Register">Register</button>
       </form> 
-    </div>
+    </div> 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
     <script src="js/geolocvalidate.js"></script>
   </body>

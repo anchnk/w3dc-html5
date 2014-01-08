@@ -9,6 +9,8 @@
   // Global Variables
   var
     geo_button = document.createElement('button'),
+    address_ul_elem = document.querySelector('#address'),
+    form = document.getElementById('register_form'),
     address,
     getPosFunction,
     geoDecPosFunction,
@@ -83,7 +85,6 @@
   **************************************************************************/
   function addGeolocButton() {
     var
-      address_ul_elem = document.querySelector('#address'),
       address_ul_first_item = document.querySelector('#address>li:first-child'),
       list_item = document.createElement('li'),
       label = document.createElement('label');
@@ -109,8 +110,7 @@
    **************************************************************************/
   function removeGeolocButton() {
     var
-      geo_button_container = document.querySelector('#address>li:first-child'),
-      address_ul_elem = document.querySelector('#address');
+      geo_button_container = document.querySelector('#address>li:first-child');
 
     if (geo_button_container !== null) {
       address_ul_elem.removeChild(geo_button_container);
@@ -325,20 +325,55 @@
 
     var
       picture_container = document.getElementById('picture'),
+      aboutyou_list = document.querySelector('#aboutyou'),
+      progressBar = document.createElement('progress'),
+      li = document.createElement('li'),
       filereader = new window.FileReader(),
-      img = null;
+      img = null,
+      xhr = new XMLHttpRequest();
 
     filereader.readAsDataURL(file);
 
+    // Add progress bar only once
+    if (!document.querySelector('#picture_upload_prgBar')) {
+      progressBar.value = 0;
+      progressBar.max = 100;
+      progressBar.id = 'picture_upload_prgBar';
+      progressBar.style.width = '280px';
+      progressBar.style.marginLeft = '220px';
+      // append progress bar to form
+      li.appendChild(progressBar);
+      aboutyou_list.appendChild(li);
+    }
+
     filereader.onload = function (e) {
+      // Remove previous picture before loading the new one
       if (picture_container.hasChildNodes()) {
         while (picture_container.firstChild) {
           picture_container.removeChild(picture_container.firstChild);
         }
       }
+
+      // update Progress Bar and upload image to form
+      xhr.open('POST', form.getAttribute('action'), true);
+      xhr.setRequestHeader('X_FILENAME', file.name);
+      xhr.upload.onprogress = function (e) {
+        progressBar.value = e.loaded;
+        progressBar.max = e.total;
+
+        if (progressBar.value === progressBar.max) {
+          // remove the progress bar and put a message
+          li.innerHTML += ' DONE';
+        }
+      };
+
+      xhr.send(file);
+      // add the picture to the DOM
       img = document.createElement('img');
       img.src = e.target.result;
       picture_container.appendChild(img);
+
+
 
       // save picture data url to storage
       if (file.size <= 1000000) {
@@ -413,9 +448,9 @@
         inputs[i].addEventListener('input', checkEventElementValidity);
         inputs[i].addEventListener('blur', removeBorder);
 
-          // Storage Part
+        // Storage Part
         inputs[i].addEventListener('input', addElemValueToSessionStorage);
-      // the input element is the file chooser 
+        // the input element is the file chooser 
       } else {
         inputs[i].addEventListener('change', handleFileSelect);
       }
@@ -532,6 +567,9 @@
     submit_btn.value = 'Register';
     submit_btn.textContent = 'Register';
     submit_btn.removeEventListener('click', saveToLocalStorage);
+
+    // form submission
+
   }
 
 
